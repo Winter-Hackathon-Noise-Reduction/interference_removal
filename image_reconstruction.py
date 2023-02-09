@@ -80,17 +80,16 @@ def fill_swath_with_neighboring_pixel(img, left=10, right=100, top=10, bottom=10
     return img_with_neighbor_filled
 
 
-def main():
+def main(image):
     """
-        The main function that can be called as function as well
+        The main function that can be called as a normal function as well
     """
-    image = read_images("images/ImageOverlayOutput.png")
     neighborfill = fill_swath_with_neighboring_pixel(image, left=0, right=7680, top=0, bottom=7680, color={0, 0, 0},
                                                      current_window_size=3)
-    cv2.imwrite("result.png", neighborfill)
-    plt.imshow(neighborfill)
-    pass
+    return neighborfill
 
 
 if __name__ == "__main__":
-    main()
+    image = read_images("images/ImageOverlayOutput.png")
+    image = main(image)
+    cv2.imwrite("result.png", image)
