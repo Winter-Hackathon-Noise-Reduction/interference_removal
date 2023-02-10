@@ -17,14 +17,6 @@ def pol2cart(rho, phi, origin):
 # Only for dry months- detect contours and generate a mask (one for each radar)
 # Use radial path information 
 
-w = 480
-centre = (w//2, w//2)
-N = 360
-thresholded_image = []
-threshold_percent_white = 0.1
-
-thresholded_image = np.array(Image.open(r"colourThresholdResult.png"))
-
 def findRadialInterferences(thresholded_image, threshold_percent_white):
     """
        Given a binarized image, this function finds radial interferences
@@ -37,7 +29,10 @@ def findRadialInterferences(thresholded_image, threshold_percent_white):
         threshold_percent_white (float): a value between 0 and 1 indicating
                             the ratio of white pixels to include a sector
     """
-
+    w = 480
+    centre = (w//2, w//2)
+    N = 360
+    threshold_percent_white = 0.1
     # create an image of zeros to store the output
     cleaned_img = np.zeros(thresholded_image.shape, dtype=np.uint8)
     w = np.min(thresholded_image.shape)
@@ -67,9 +62,9 @@ def findRadialInterferences(thresholded_image, threshold_percent_white):
             cleaned_img = cv2.bitwise_or(result, cleaned_img)
     return cleaned_img
 
-cleaned_img = findRadialInterferences(thresholded_image, threshold_percent_white)
-cv2.imshow('image',cleaned_img)
-cv2.waitKey(0)
+# cleaned_img = findRadialInterferences(thresholded_image, threshold_percent_white)
+# cv2.imshow('image',cleaned_img)
+# cv2.waitKey(0)
 
 
 
