@@ -7,8 +7,13 @@ We have also run and tried already available models
 
 # Team Members:
 Carlos Pichardo Vicencio
+
 Mudita Shakya
+
 Minahil Raza
+
 Clare Davis
+
 Junaid Haris
+
 Aarohi Garg
