@@ -5,6 +5,7 @@
 # This is a sample Python script.
 import cv2
 import numpy as np
+from process_contours import findRadialInterferences
 
 
 def colourThreshold(frame):
@@ -58,6 +59,31 @@ def backgroundSubtraction(img):
 
             result = cv2.bitwise_and(img, circularMask)
             return result
+
+def perform_preprocessing(image_path):
+    threshold_percent_white = 0.1
+    cap = cv2.VideoCapture(image_path)
+    ret, image = cap.read()
+    cap.release()
+    if ret:
+        imageWithoutBackground = backgroundSubtraction(image)
+        cv2.imshow("imageWithoutBackground", imageWithoutBackground)
+        imageColourThreshold = colourThreshold(imageWithoutBackground)
+        cv2.imshow("imageColourThreshold", imageColourThreshold)
+
+        # thresholded_image = np.array(imageColourThreshold, dtype = np.uint8)
+        # cleaned_img = findRadialInterferences(thresholded_image, threshold_percent_white)
+        # cv2.imshow("cleanedImage", cleaned_img)
+
+
+        imageMaskOverlay = thresholdOverlay(imageColourThreshold, image)
+        cv2.imshow("imageMaskOverlay", imageMaskOverlay)
+        output_path = "data/ImageOverlayOutput.png"
+        cv2.imwrite(output_path, imageMaskOverlay)
+
+        cv2.waitKey(0)
+        return imageMaskOverlay
+    return None
 
 
 # Press ⌃R to execute it or replace it with your code.

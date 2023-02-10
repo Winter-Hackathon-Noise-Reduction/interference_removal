@@ -1,4 +1,9 @@
-# interference_removal
+
+# Interference Removal
+
+## Command to run:
+python combined_code.py
+
 
 We have also run and tried already available models
 - https://colab.research.google.com/drive/1yDkYj9mnURyVsc4YbvmFZoL_2YH7Hrx2?usp=sharing
